@@ -393,11 +393,11 @@ main > .section-tree > .clients > .client > p {
   line-height: 2rem;
   color: var(--Dark-grayish-blue);
 }
-main > .section-tree > .clients > .client > h4 {
+main > .section-tree > .clients > .client > h3 {
   margin-bottom: 4rem;
   font-size: 1.3rem;
 }
-main > .section-tree > .clients > .client > h4 > span {
+main > .section-tree > .clients > .client > h3 > span {
   display: block;
 
   margin-top: 0.6rem;
@@ -492,7 +492,7 @@ footer > .attribution a {
 
     background-image: url("../images/desktop/image-header.jpg");
 
-    height: 90vh;
+    height: 89vh;
     max-width: 1440px;
   }
   header > a {
