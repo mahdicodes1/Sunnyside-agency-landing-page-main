@@ -21,7 +21,7 @@ The designs were created to the following widths:
 
 ## **Links**
 
-- Live Site URL: [click here](https://mahdicodes1.github.io/Project-tracking-intro-component/)
+- Live Site URL: [click here](https://mahdicodes1.github.io/Sunnyside-agency-landing-page-main/)
 
 <br>
 
