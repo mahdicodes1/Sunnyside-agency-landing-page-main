@@ -7,7 +7,7 @@
 
 # **Challenge Name**
 
-- ### [Sunnyside agency landing page main](https://www.frontendmentor.io/solutions/project-tracking-intro-component-uS8VflPNgi)
+- ### [Sunnyside agency landing page main](https://www.frontendmentor.io/solutions/sunnyside-agency-landing-page-main-qY-nHw6GZX)
 
 <br>
 
