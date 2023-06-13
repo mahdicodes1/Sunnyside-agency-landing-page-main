@@ -9,6 +9,12 @@
   --Dark-grayish-blue: hsl(232, 10%, 55%);
   --grayish-blue: hsl(210, 4%, 67%);
 }
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
 body {
   display: grid;
   grid-template-columns: 1fr;
@@ -55,6 +61,7 @@ header > a {
   font-weight: 900;
   text-decoration: none;
   color: #fff;
+  align-self: flex-center;
 }
 header > nav {
   grid-area: navbar;
@@ -111,17 +118,15 @@ header > img {
 }
 #menuToggle input:checked ~ #menu {
   opacity: 1;
-  padding-right: 30px;
-  padding-left: 30px;
 }
 #menu {
   position: absolute;
   z-index: -999;
 
-  width: 270px;
-  height: 290px;
+  width: 330px;
+  height: 315px;
   box-shadow: 0 0 10px #85888c;
-  margin: 0 10px 0 0;
+  margin: 0 20px 0 0;
   padding-top: 20px;
   background-color: #ffffff;
 
@@ -166,14 +171,14 @@ header > img {
   color: var(--Dark-grayish-blue);
 }
 #menu li a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 #menu li:last-child {
   margin-top: 40px;
 }
 #menu li:last-child a {
   background: var(--yellow);
-  padding: 15px 30px;
+  padding: 18px 25px;
   border-radius: 100px;
 
   text-transform: uppercase;
@@ -181,6 +186,7 @@ header > img {
   color: #000;
   font-size: 1rem;
   font-weight: 800;
+  letter-spacing: 0;
 }
 .main--sr-only {
   position: absolute;
@@ -217,10 +223,11 @@ main > .section-two > .section-two-elements {
 
   padding: 10px;
   max-width: 500px;
-  height: 400px;
+  height: 440px;
 }
 main > .section-one > .section-one-elements > h2,
 main > .section-two > .section-two-elements > h2 {
+  align-self: end;
   text-align: center;
   font-size: 2rem;
   font-weight: 900;
@@ -234,12 +241,13 @@ main > .section-two > .section-two-elements > p {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 900;
-  line-height: 1.9rem;
+  line-height: 1.8rem;
   color: var(--grayish-blue);
 }
 main > .section-one > .section-one-elements > a,
 main > .section-two > .section-two-elements > a {
   display: inline-block;
+  align-self: start;
 
   text-transform: uppercase;
   text-decoration: none;
@@ -262,16 +270,22 @@ main > .section-two > .section-two-elements > a::after {
   opacity: 0.3;
 
   transform: translate(-0.6rem, -0.8rem);
+  transition: 0.4s ease;
 }
 main > .section-two > .section-two-elements > a::after {
   background: var(--soft-red);
   opacity: 0.2;
 }
+main > .section-one > .section-one-elements > a:hover::after,
+main > .section-two > .section-two-elements > a:hover::after {
+  opacity: 0.9;
+}
 main > .section-one > .section-one-photo {
   max-width: 500px;
   height: auto;
 }
-main > .section-one > .section-one-photo > picture > img {
+main > .section-one > .section-one-photo > picture > img,
+main > .section-two > .section-two-photo > picture > img {
   overflow: hidden;
   width: 100%;
   height: auto;
@@ -280,11 +294,6 @@ main > .section-two {
   display: grid;
   max-width: 500px;
   place-items: center;
-}
-main > .section-two > .section-two-photo > picture > img {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
 }
 main > .figures {
   display: grid;
@@ -309,9 +318,9 @@ main > .figures > .figure-two > picture > img {
 }
 main > .figures > .figure-one > figcaption,
 main > .figures > .figure-two > figcaption {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 350px auto;
+  grid-template-rows: 60px 1fr 60px;
   justify-content: center;
   text-align: center;
   place-items: center;
@@ -330,12 +339,15 @@ main > .figures > .figure-two > figcaption {
 }
 main > .figures > .figure-one > figcaption > h2,
 main > .figures > .figure-two > figcaption > h2 {
+  grid-column: 2/3;
+  align-self: start;
   font-size: 1.8rem;
+  font-weight: 900;
 }
 main > .figures > .figure-one > figcaption > p,
 main > .figures > .figure-two > figcaption > p {
-  padding: 0 15px 40px 15px;
   line-height: 1.6rem;
+  grid-column: 2/3;
 
   font-family: "Barlow", serif;
   font-size: 1rem;
@@ -364,6 +376,8 @@ main > .section-tree > .clients > .client {
   display: grid;
   place-items: center;
   text-align: center;
+
+  height: 400px;
 }
 main > .section-tree > .clients > .client > img {
   border-radius: 50%;
@@ -439,11 +453,26 @@ footer > .navigation > a {
   font-size: 1.2rem;
   color: var(--dark-moderate-cyan);
 }
+footer > .navigation > a:hover {
+  color: #fff;
+}
+footer > .social-media > ul {
+  display: flex;
+  align-items: center;
+}
+footer > .social-media > ul > li {
+  list-style: none;
+  padding-right: 2rem;
+}
+footer > .social-media > ul > li > a:is(:hover) {
+  filter: invert(100%) saturate(0%) hue-rotate(321deg) brightness(200%)
+    contrast(102%);
+}
 footer > .social-media {
   place-items: center;
 }
-footer > .social-media > img {
-  padding-right: 2rem;
+footer > .social-media > img:hover {
+  color: #fff;
 }
 footer > .attribution {
   font-size: 11px;
@@ -455,437 +484,193 @@ footer > .attribution a {
 
 /* -----------------------------  Media Queries --------------------------- */
 
-@media (min-width: 800px) {
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
-  }
+@media (min-width: 970px) {
   header {
-    display: grid;
-    grid-template-areas:
-      "logo navbar"
-      "headText headText"
-      "row row";
-    grid-template-rows: 75px 40% 50%;
-    grid-template-columns: 150px 1fr;
-    align-items: center;
-    justify-content: center;
+    grid-template-rows: 75px 37% 20%;
+    grid-template-columns: 200px 1fr;
 
-    background-image: url("/assets/images/mobile/image-header.jpg");
-    background-size: cover;
-    background-position-y: top;
+    background-image: url("/assets/images/desktop/image-header.jpg");
 
-    height: 61vh;
-    max-width: 500px;
+    height: 87vh;
+    max-width: 1440px;
   }
   header > a {
-    justify-self: center;
-    grid-area: logo;
-
-    margin-top: 7px;
-
-    font-family: "Barlow";
-    font-size: 1.5rem;
-    font-weight: 900;
-    text-decoration: none;
-    color: #fff;
-  }
-  header > nav {
-    grid-area: navbar;
-    justify-self: end;
-    flex-grow: 1;
+    font-size: 2rem;
+    align-self: flex-end;
   }
   header > h1 {
-    grid-area: headText;
-    justify-self: center;
-    align-self: center;
-
-    font-size: 2.5rem;
-    font-weight: 900;
-    word-spacing: 0.4rem;
-    letter-spacing: 0.4rem;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  header > img {
-    grid-area: row;
-    align-self: start;
-    justify-self: center;
-  }
-  #menuToggle {
-    position: relative;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
+    font-size: 3.5rem;
   }
   #menuToggle img {
-    align-self: end;
-
-    position: relative;
-    top: 7px;
-    left: 5px;
-    z-index: 1;
-
-    width: 24px;
-    height: 18px;
-    margin-right: 35px;
+    display: none;
   }
   #menuToggle input {
-    align-self: end;
-
-    position: absolute;
-    z-index: 2;
-
-    width: 25px;
-    height: 25px;
-
-    cursor: pointer;
-    opacity: 0;
-  }
-  #menuToggle input:checked ~ #menu {
-    opacity: 1;
-    padding-right: 30px;
-    padding-left: 30px;
+    pointer-events: none;
   }
   #menu {
-    position: absolute;
-    z-index: -999;
+    top: 0;
+    z-index: 999;
 
-    width: 270px;
-    height: 290px;
-    box-shadow: 0 0 10px #85888c;
+    width: 570px;
+    height: 35px;
+    box-shadow: 0 0 0 transparent;
     margin: 0 10px 0 0;
-    padding-top: 20px;
-    background-color: #ffffff;
-
+    padding-top: 0px;
+    background-color: transparent;
     -webkit-font-smoothing: antialiased;
 
-    transform-origin: 0% 0%;
-    opacity: 0;
-    transform: translate(-90%, 18%);
-  }
-  #menu::after {
-    position: absolute;
-    top: -25px;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-right: 13px solid #ffffff;
-    border-top: 13px solid transparent;
-    border-left: 13px solid transparent;
-    border-bottom: 13px solid #ffffff;
+    padding-right: 0;
+    padding-left: 0;
 
-    content: "";
-  }
-  #menu ul {
-    display: flex;
+    opacity: 1;
+    transform: translate(-93%, 20%);
   }
 
   #menu li {
-    padding: 10px 0;
-    margin-bottom: 15px;
-    text-align: center;
+    display: inline;
 
+    position: relative;
+    padding: 8px 0;
     list-style-type: none;
+    margin-right: 20px;
+
+    transition-delay: 2s;
   }
   #menu li a {
-    margin-right: 10px;
-
-    font-family: "Barlow";
-    font-weight: 600;
-    font-size: 1.3rem;
-    text-decoration: none;
-    letter-spacing: 0.1rem;
-    color: var(--Dark-grayish-blue);
-  }
-  #menu li a:hover {
-    text-decoration: underline;
-  }
-  #menu li:last-child {
-    margin-top: 40px;
+    color: #fff;
   }
   #menu li:last-child a {
-    background: var(--yellow);
-    padding: 15px 30px;
-    border-radius: 100px;
-
-    text-transform: uppercase;
-    font-family: inherit;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 800;
+    background: #fff;
   }
-  .main--sr-only {
-    position: absolute;
-
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  #menu li:last-child a:hover {
+    color: #fff;
+    background: rgb(106, 202, 250);
   }
   main {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-content: center;
+    grid-template-columns: 1fr 1fr;
 
-    max-width: 500px;
+    max-width: 1440px;
   }
   main > .section-one {
-    display: flex;
-    flex-direction: column-reverse;
-    place-items: center;
+    flex-direction: row;
+    grid-column: 1/3;
 
-    max-width: 500px;
+    max-width: 1440px;
   }
   main > .section-one > .section-one-elements,
   main > .section-two > .section-two-elements {
     display: grid;
-    place-items: center;
-    text-align: center;
+    grid-template-columns: 0.2fr 0.8fr 0.2fr;
+    grid-template-rows: 150px 200px 100px;
+    place-items: start;
+    text-align: start;
 
-    padding: 10px;
-    max-width: 500px;
+    padding: 0;
+    max-width: 1440px;
     height: 400px;
   }
+  main > .section-one > .section-one-elements {
+    flex: 1;
+    grid-column: 1/3;
+  }
+
   main > .section-one > .section-one-elements > h2,
   main > .section-two > .section-two-elements > h2 {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 900;
+    text-align: start;
+    font-size: 2.5rem;
+    grid-column: 2/3;
+    padding-right: 1.8rem;
+    justify-self: start;
+    align-self: end;
   }
   main > .section-two > .section-two-elements > h2 {
-    padding: 0 30px;
+    padding: 0;
   }
   main > .section-one > .section-one-elements > p,
   main > .section-two > .section-two-elements > p {
-    font-family: "Barlow";
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 900;
-    line-height: 1.9rem;
-    color: var(--grayish-blue);
+    align-self: center;
+    text-align: start;
+    grid-column: 2/3;
+    grid-row: 2;
   }
   main > .section-one > .section-one-elements > a,
   main > .section-two > .section-two-elements > a {
-    display: inline-block;
-
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 900;
-    line-height: 1.9rem;
-    color: #000;
-  }
-  main > .section-one > .section-one-elements > a::after,
-  main > .section-two > .section-two-elements > a::after {
-    position: absolute;
-    z-index: -2;
-
-    display: block;
-    content: "";
-    width: 8.5rem;
-    height: 0.6rem;
-    border-radius: 5rem;
-    background: var(--yellow);
-    opacity: 0.3;
-
-    transform: translate(-0.6rem, -0.8rem);
-  }
-  main > .section-two > .section-two-elements > a::after {
-    background: var(--soft-red);
-    opacity: 0.2;
+    grid-column: 2;
+    grid-row: 3;
   }
   main > .section-one > .section-one-photo {
-    max-width: 500px;
-    height: auto;
+    flex: 1;
+    max-width: 1440px;
   }
-  main > .section-one > .section-one-photo > picture > img {
-    overflow: hidden;
-    width: 100%;
-    height: auto;
+  main > .section-one > .section-one-photo > picture > img,
+  main > .section-two > .section-two-photo > picture > img {
+    display: block;
   }
   main > .section-two {
-    display: grid;
-    max-width: 500px;
-    place-items: center;
-  }
-  main > .section-two > .section-two-photo > picture > img {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1/3;
+    max-width: 1440px;
   }
   main > .figures {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1/3;
 
-    max-width: 500px;
-    margin: 0;
+    max-width: 1440px;
   }
   main > .figures > .figure-one,
   main > .figures > .figure-two {
-    position: relative;
-
-    max-width: 500px;
-    margin: 0;
-  }
-  main > .figures > .figure-one > picture > img,
-  main > .figures > .figure-two > picture > img {
-    display: block;
-
-    width: 100%;
-    height: auto;
+    max-width: 1440px;
   }
   main > .figures > .figure-one > figcaption,
   main > .figures > .figure-two > figcaption {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    place-items: center;
-
-    position: absolute;
-    bottom: 0;
-
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-
-    color: var(--dark-desaturated-cyan);
-  }
-  main > .figures > .figure-two > figcaption {
-    color: var(--Very-dark-desaturated-blue);
+    display: grid;
+    grid-template-columns: auto 350px auto;
+    grid-template-rows: 50px 1fr 50px;
+    max-width: 1440px;
   }
   main > .figures > .figure-one > figcaption > h2,
   main > .figures > .figure-two > figcaption > h2 {
-    font-size: 1.8rem;
+    grid-column: 2/3;
+    font-weight: 900;
   }
   main > .figures > .figure-one > figcaption > p,
   main > .figures > .figure-two > figcaption > p {
-    padding: 0 15px 40px 15px;
     line-height: 1.6rem;
-
-    font-family: "Barlow", serif;
-    font-size: 1rem;
+    grid-column: 2/3;
   }
 
   main > .section-tree {
-    display: grid;
-    place-items: center;
+    grid-column: 1/3;
 
-    max-width: 500px;
+    max-width: 1440px;
+    height: 80vh;
   }
   main .section-tree h2 {
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    font-weight: 900;
-    letter-spacing: 0.2rem;
-    color: var(--Very-dark-grayish-blue);
-    opacity: 0.5;
-
-    padding: 40px 20px;
+    align-self: end;
+    font-size: 1.4rem;
+    word-spacing: 0.3rem;
   }
   main > .section-tree > .clients {
-    max-width: 500px;
-  }
-  main > .section-tree > .clients > .client {
     display: grid;
-    place-items: center;
-    text-align: center;
-  }
-  main > .section-tree > .clients > .client > img {
-    border-radius: 50%;
-    width: 4.3rem;
-  }
-  main > .section-tree > .clients > .client > p {
-    padding: 10px 38px;
-
-    text-align: center;
-    font-family: "Barlow";
-    font-size: 1.1rem;
-    line-height: 2rem;
-    color: var(--Dark-grayish-blue);
-  }
-  main > .section-tree > .clients > .client > h4 {
-    margin-bottom: 4rem;
-    font-size: 1.3rem;
-  }
-  main > .section-tree > .clients > .client > h4 > span {
-    display: block;
-
-    margin-top: 0.6rem;
-
-    font-family: "Barlow";
-    font-size: 1rem;
-    color: var(--grayish-blue);
-    opacity: 0.7;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1440px;
   }
   main > .photo-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column: 1/3;
 
-    max-width: 500px;
-  }
-  main > .photo-gallery > .photo {
-    margin: 0;
-  }
-  main > .photo-gallery > .photo > picture > img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-    overflow: hidden;
+    max-width: 1440px;
   }
   footer {
-    display: grid;
-    grid-template-rows: 100px 100px 100px;
-    place-items: center;
+    height: 40vh;
 
-    max-width: 500px;
-    background: hsl(167, 44%, 70%);
-  }
-  footer > h3 {
-    justify-self: center;
-
-    font-family: "Barlow";
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--dark-desaturated-cyan);
+    max-width: 1440px;
   }
   footer > .navigation {
-    display: flex;
-    align-items: start;
-    justify-content: space-evenly;
-
-    width: 100%;
+    justify-content: center;
   }
   footer > .navigation > a {
-    margin: 0;
-
-    text-decoration: none;
-    font-family: "Barlow";
-    font-size: 1.2rem;
-    color: var(--dark-moderate-cyan);
-  }
-  footer > .social-media {
-    place-items: center;
-  }
-  footer > .social-media > img {
-    padding-right: 2rem;
-  }
-  footer > .attribution {
-    font-size: 11px;
-    text-align: center;
-  }
-  footer > .attribution a {
-    color: hsl(228, 45%, 44%);
+    padding: 25px;
   }
 }
