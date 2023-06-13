@@ -43,6 +43,7 @@ header {
   align-items: center;
   justify-content: center;
 
+  background-color: #3EBFFF;
   background-image: url("../images/mobile/image-header.jpg");
   background-size: cover;
   background-position-y: top;
